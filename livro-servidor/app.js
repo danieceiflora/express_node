@@ -6,7 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var livroRouter = require('./routes/livros'); // Importando o novo roteador de livros
 
+var cors = require('cors');
 var app = express();
 
 // view engine setup
@@ -21,6 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/livros', livroRouter); // Usando o roteador de livros
+app.use(cors()); // Habilitando CORS para todas as rotas
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
