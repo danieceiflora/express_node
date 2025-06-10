@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Livro } from './livro';
 
+var baseUrl = 'http://localhost:3030/livros';
+
 @Injectable({
   providedIn: 'root'
 })
-
-var baseUrl = 'http://localhost:3030/livros';
 export class ControleLivrosService {
 
   async obterLivros(): Promise<Array<Livro>> {

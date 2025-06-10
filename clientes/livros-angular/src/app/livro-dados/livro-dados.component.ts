@@ -12,11 +12,13 @@ import { Router } from '@angular/router';
   styleUrl: './livro-dados.component.css'
 })
 export class LivroDadosComponent {
-  public livro: Livro = new Livro(0, 0, '', '', []);
+  public livro: Livro = new Livro('', 0, '', '', []);
   public autoresForm: string = '';
   public editoras: Array<Editora> = [];
 
-  constructor(private servEditora: ControleEditoraService, private servLivros: ControleLivrosService, private router: Router) { }
+  constructor(private servEditora: ControleEditoraService,
+     private servLivros: ControleLivrosService,
+     private router: Router) { }
 
   ngOnInit(): void {
     this.editoras = this.servEditora.getEditoras();
