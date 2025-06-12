@@ -4,12 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var cors = require('cors');
+var app = express();
+
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+}));
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var livroRouter = require('./routes/livros'); // Importando o novo roteador de livros
-
-var cors = require('cors');
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +26,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors()); // Habilitando CORS para todas as rotas
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

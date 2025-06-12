@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const livro = req.body;
-    await incluir(livro);
-    res.json({ message: 'Livro incluído com sucesso' });
+    const resultado = await incluir(livro);
+    res.status(201).json(resultado);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -25,7 +25,7 @@ router.delete('/:codigo', async (req, res) => {
   try {
     const codigo = req.params.codigo;
     await excluir(codigo);
-    res.json({ message: 'Livro excluído com sucesso' });
+    res.status(200).json({ message: 'Livro excluído com sucesso' });
   } catch (error) {
     res.status(500).json({ error: 'Falha ao excluir livro' });
   }
